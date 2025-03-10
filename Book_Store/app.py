@@ -9,7 +9,7 @@ def get_books():
         return response.json()
     return []
 
-@app.route('/books')
+@app.route('/')
 def book_list():
     books = get_books()
     return render_template('book_list.html', books=books)
@@ -21,4 +21,9 @@ def book_detail(book_id):
         if book["id"] == book_id:
             return render_template('book_detail.html', book=book)
         
-    
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404   
+
+if __name__ == '__main__':
+    app.run(debug=True)
