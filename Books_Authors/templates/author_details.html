@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Author Details{% endblock %}
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Single Author</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="col">
+            <div class="card h-100 border-0 shadow p-3 rounded-3" style="transition: transform 0.2s ease-in-out;">
+                
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ author.name }}</h5>
+                    <h6 class="card-subtitle text-muted">Books by this author:</h6>
+                    <h4 class="card-subtitle text-muted">
+                        {% for book in author.books %}
+                            {{ book.title }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </h4>
+                    <a href="{{ url_for('get_authors')}}" class="btn btn-primary">Back to all authors</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
