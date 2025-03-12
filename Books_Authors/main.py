@@ -36,7 +36,7 @@ def bookForm():
         )
         db.session.add(book)
         db.session.commit()
-        return redirect(url_for('base'))
+        return redirect(url_for('books'))
 
     return render_template('book_form.html', form=form)
 
